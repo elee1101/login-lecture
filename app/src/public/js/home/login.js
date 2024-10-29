@@ -2,6 +2,8 @@
 
 //DOM -> Document Object module
 
+//html과 연결된 js file
+
 const id = document.querySelector("#id"),
   psword = document.querySelector("#psword"),
   loginBtn = document.querySelector("button");
@@ -20,5 +22,6 @@ const id = document.querySelector("#id"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify(req),
-    });
+    }).then((res) => res.json())
+      .then(console.log);
   }

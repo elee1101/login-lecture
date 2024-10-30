@@ -32,5 +32,5 @@ const id = document.querySelector("#id"),
       })
       .catch((err) => {
         console.error(new Error("Error"));
-      })
+      });
   }

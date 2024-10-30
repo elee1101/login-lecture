@@ -1,12 +1,9 @@
 "use strict";
 
-//아래 데이터
-const users = {
-  id: ["aaaa", "bbbb", "cccc"],
-  psword: ["1234", "4321", "5678"]
-}
-
+const UserStorage = require("../../models/UserStorage");
 //메인화면이면 home, 로그인화면이면 login화면 이동하는 함수? module화
+
+const userStorage = require("../../models/UserStorage");
 
 const output = {
   home: (req, res) =>{
@@ -22,19 +19,20 @@ const process = {
     const id = req.body.id,
       psword = req.body.psword;
 
+    const users = UserStorage.getUsers("id", "psword");
+
+    const response = {};
     if (users.id.includes(id)) {
       const idx = users.id.indexOf(id);
       if (users.psword[idx] === psword) {
-        return res.json({
-          success: true,
-        });
+        response.success = true;
+        return res.json(response);
       }
     }
 
-    return res.json({
-      success: false,
-      msg: "failed to login",
-    });
+    response.success = false;
+    response.msg = "failed to login";
+    return res.json(response);
   },
 };
   

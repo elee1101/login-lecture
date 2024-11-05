@@ -39,6 +39,11 @@ const process = {
     // response.msg = "failed to login";
     // return res.json(response);
   },
+  register: (req,res) => {
+    const user = new User(req.body);
+    const response = user.register();
+    return res.json(response);
+  }
 };
   
 module.exports = {

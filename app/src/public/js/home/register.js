@@ -5,18 +5,24 @@
 //html과 연결된 js file
 
 const id = document.querySelector("#id"),
+  name = document.querySelector("#name"),
   psword = document.querySelector("#psword"),
-  loginBtn = document.querySelector("#button");
+  confirmPsword = document.querySelector("#confirm-psword"),
+  registerBtn = document.querySelector("#button");
 
-loginBtn.addEventListener("click", login);
+registerBtn.addEventListener("click", register);
 
-function login() {
+function register() {
+  if (!id.value) {return alert('ID please')}
+  if (psword != confirmPsword) {return alert("wrong password")}
+
   const req = {
     id: id.value,
-    psword: psword.value,
+    name: name.value,
+    psword: psword.value
   };
 
-  fetch("/login", {
+  fetch("/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,13 +32,12 @@ function login() {
     .then((res) => res.json())
     .then((res) => {
       if (res.success) {
-        location.href = "/";
+        location.href = "/login";
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.error(new Error("Login Error"));
+      console.error("Sign Up Error");
     });
 }
-

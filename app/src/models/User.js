@@ -19,6 +19,10 @@ class User {
     }
     return {success: false, msg: "not valid"};
   }
+
+  register() {
+    UserStorage.save(this.body);
+  }
 }
 
 module.exports = User;

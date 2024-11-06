@@ -7,9 +7,9 @@ class User {
     this.body = body;
   } 
 
-  login() {
+  async login() {
     const body = this.body
-    const {id, psword} = UserStorage.getUserInfo(body.id);
+    const { id, psword} = await UserStorage.getUserInfo(body.id);
 
     if (id) {
       if (id === body.id && psword === body.psword) {
@@ -21,7 +21,8 @@ class User {
   }
 
   register() {
-    UserStorage.save(this.body);
+    const response = UserStorage.save(this.body);
+    return response;
   }
 }
 

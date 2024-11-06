@@ -32,7 +32,7 @@ function login() {
       }
     })
     .catch((err) => {
-      console.error(new Error("Login Error"));
+      console.error("Login Error");
     });
 }
 

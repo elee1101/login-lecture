@@ -13,8 +13,8 @@ const id = document.querySelector("#id"),
 registerBtn.addEventListener("click", register);
 
 function register() {
-  if (!id.value) {return alert('ID please')}
-  if (psword != confirmPsword) {return alert("wrong password")}
+  if (!id.value) return alert("ID please");
+  if (psword !== confirmPsword) return alert("wrong password");
 
   const req = {
     id: id.value,
